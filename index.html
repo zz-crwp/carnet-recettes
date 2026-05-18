@@ -588,7 +588,7 @@ function rHome(){
   const cSL=cr?.scrollLeft||0,tSL=tr?.scrollLeft||0;
   const n=Object.values(TS).filter(Boolean).length,total=allR().length;
   const syncOk=GH_TOKEN&&GH_GIST_ID;
-  $('tb').innerHTML=`<div style="width:34px"></div><div class="ttl">Gâtés</div><div class="sync-dot ${syncOk?'ok':''}" style="margin-left:auto" title="${syncOk?'Sync GitHub actif':'Local uniquement'}"></div><button class="hd-btn" title="GitHub Sync" onclick="openFB()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></button>`;
+  $('tb').innerHTML=`<div style="flex:1"></div><div class="sync-dot ${syncOk?'ok':''}" title="${syncOk?'Sync GitHub actif':'Local uniquement'}"></div><button class="hd-btn" title="GitHub Sync" onclick="openFB()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></button>`;
   fbSt(syncOk?'ok':'of');
   let recipes=allR();
   if(HF.cat!=='Tout')recipes=recipes.filter(r=>r.cat===HF.cat);
@@ -694,7 +694,7 @@ const DNAMES=['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche']
 function wDays(off){const now=new Date(),day=now.getDay(),mon=new Date(now);mon.setDate(now.getDate()-(day===0?6:day-1)+(off*7));return Array.from({length:7},(_,i)=>{const d=new Date(mon);d.setDate(mon.getDate()+i);return d;});}
 function dKey(d){return d.toISOString().slice(0,10);}
 function rPlan(){
-  $('tb').innerHTML='<div class="ttl">Semaine</div>';
+  $('tb').innerHTML='';
   const days=wDays(PO),wl=days[0].toLocaleDateString('fr-FR',{day:'numeric',month:'short'})+' – '+days[6].toLocaleDateString('fr-FR',{day:'numeric',month:'short',year:'numeric'});
   $('ct').innerHTML='<div class="planner-wrap"><div class="week-nav"><button class="week-btn" onclick="PO--;rPlan()">← Avant</button><div class="week-label">'+wl+'</div><button class="week-btn" onclick="PO++;rPlan()">Après →</button></div>'
     +'<button class="gen-shop-btn" onclick="genShop()">Générer la liste de courses</button>'
@@ -709,7 +709,7 @@ function genShop(){const days=wDays(PO);const rids=new Set();days.forEach(d=>{co
 // ── SHOPPING ───────────────────────────────────────────────
 function addToS(rid,portions){const r=getR(rid);if(!r)return;const ratio=portions/(r.portions||1);(r.ingredients||[]).forEach(ing=>{if(!ing.a)return;const qty=Math.round(ing.a*ratio*10)/10;const ex=SH.find(s=>s.name.toLowerCase()===ing.n.toLowerCase()&&s.unit===ing.u);if(ex)ex.qty=Math.round((ex.qty+qty)*10)/10;else SH.push({id:Date.now()+'_'+Math.random(),name:ing.n,qty,unit:ing.u||'',checked:false,source:r.name,cat:gIC(ing.n)});});scheduleSync();if(curTab==='shopping')rShop();}
 function rShop(){
-  $('tb').innerHTML='<div class="ttl">Courses</div>';
+  $('tb').innerHTML='';
   const all=[...SH,...MI.map(m=>({...m,cat:'Divers',isM:true}))];
   const groups={};all.forEach(item=>{const cat=item.cat||'Divers';if(!groups[cat])groups[cat]=[];groups[cat].push(item);});
   const unch=all.filter(i=>!i.checked).length;
@@ -732,7 +732,7 @@ function rAdd(){
   const isE=!!EID,r=isE?CR.find(x=>x.id===EID):null;
   if(isE&&r){FI=r.ingredients.map(i=>({...i}));FS=r.steps.map(s=>({...s,timer:s.timer||''}));FT=[...(r.tags||[])];FL=r.lifestyle||'';FM={k:r.macros?.kcal||'',p:r.macros?.prot||'',g:r.macros?.gluc||'',l:r.macros?.lip||''};}
   else if(!isE){FI=[{a:'',u:'g',n:''}];FS=[{t:'',timer:'',d:''}];FT=[];FL='';FM={k:'',p:'',g:'',l:''};}
-  $('tb').innerHTML=`<div class="ttl">${isE?'Modifier':'<em>Nouvelle recette</em>'}</div>`;
+  $('tb').innerHTML='';
   $('ct').innerHTML=`<div class="aw">
   ${!isE?`<div class="import-block"><div class="import-title">✨ Import via Claude</div><div class="import-desc">Envoie une photo ou un lien à Claude, copie le prompt <span onclick="copyPr()">ici</span>, colle le JSON ci-dessous.</div><textarea class="import-ta" id="jimput" placeholder='{"name":"..."}'></textarea><button class="import-btn" onclick="impJ()">Charger →</button><div id="impst" class="import-status" style="display:none"></div></div>`:''}
   <div class="fg"><label class="fl">Nom *</label><input class="fi" id="fn" value="${r?.name||''}" placeholder="Ex: Gratin dauphinois"></div>
