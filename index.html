@@ -410,7 +410,6 @@ const INIT=[
 {id:"rhum-tonka",cat:"Boisson",name:"Rhum Tonka-Poire",fullName:"Rhum <em>Tonka</em>-Poire",tag:"Macération 4–6 semaines",desc:"Le plus subtil. Notes de vanille, amande et foin. Douceur de la poire.",portions:30,prepTime:20,cookTime:0,difficulty:"Facile",tags:["Fait maison","Festif"],lifestyle:"Festif",macros:{kcal:112,prot:0,gluc:11,lip:0},meta:[{v:"4–6 sem.",l:"Macération"},{v:"55°",l:"Alcool"},{v:"Subtil",l:"Profil"}],ingredients:[{a:1.5,u:"L",n:"HSE Blanc 55°"},{a:2,u:"",n:"Poires Williams (légèrement sous-mûres)"},{a:3,u:"",n:"Fèves de tonka (légèrement râpées)"},{a:4,u:"càs",n:"Sucre de canne roux"}],ratio:null,steps:[{id:"s1",t:"Préparer tonka",timer:null,d:"Râper légèrement chaque fève comme la muscade — juste la surface."},{id:"s2",t:"Assembler + macérer",timer:null,d:"Poires + tonka + sucre + HSE. 4–6 semaines minimum."},{id:"s3",t:"Filtrer",timer:null,d:"Filtrer finement. Couleur ambrée dorée."}],notes:["3 fèves pour 1.5L — dose raisonnée (coumarine).","Le plus complexe de la série — patience requise."]}
 ];
 
-/
 // ── STEPS ──────────────────────────────────────────────────
 function mkStep(rid,step,idx){
   const k=tk(rid,step.id),notes=SN[k]||[],done=SD[k]||false;
@@ -451,7 +450,7 @@ function delJE(rid,idx){JN[rid].splice(idx,1);scheduleSync();renderJ(rid);}
 function renderJ(rid){const el=$('jlist-'+rid);if(!el)return;el.innerHTML=(JN[rid]||[]).map((e,i)=>`<div class="jentry"><span class="jdate">${e.date}</span><div class="jbody">${e.text?`<div class="jtext">${e.text}</div>`:''}${e.photo?`<img src="${e.photo}" class="jph" loading="lazy">`:''}</div><button class="jdl" data-rid="${rid}" data-i="${i}" onclick="delJE(this.dataset.rid,parseInt(this.dataset.i))">×</button></div>`).join('');}
 async function shareR(rid){const r=getR(rid);if(!r)return;const text=r.name+'\n\n'+(r.desc||'')+'\n\nIngrédients :\n'+(r.ingredients||[]).map(i=>'• '+(i.a||'')+(i.u?' '+i.u:'')+' '+i.n).join('\n');if(navigator.share)try{await navigator.share({title:r.name,text});return;}catch{}navigator.clipboard?.writeText(text).then(()=>alert('Recette copiée !'));}
 
-/ ── PERSISTENCE ───────────────────────────────────────────
+// ── PERSISTENCE ───────────────────────────────────────────
 const LS={load(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d;}catch{return d;}},save(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch{}}};
 let CR=LS.load('cr6_r',[]);   // custom recipes
 let TS=LS.load('cr6_t',{});   // tested
