@@ -604,7 +604,7 @@ function rPlan(){
 }
 function pickSlot(dk,slot){showPicker(function(rid){if(!PL[dk])PL[dk]={};PL[dk][slot]=rid;scheduleSync();rPlan();});}
 function clrSlot(dk,slot){if(PL[dk]){delete PL[dk][slot];scheduleSync();rPlan();}}
-function genShop(){var days=wDays(PO),rids=new Set();days.forEach(function(d){var dk=dKey(d);SLOTS.forEach(function(s){if(PL[dk]&&PL[dk][s])rids.add(PL[dk][s]);});});if(!rids.size){alert('Aucune recette planifiée.');return;}rids.forEach(function(rid){addToS(rid,CP[rid]||(getR(rid)?getR(rid).portions||4:4));});sw('shopping');}
+function genShop(){var days=wDays(PO);var ridCounts=new Map();days.forEach(function(d){var dk=dKey(d);SLOTS.forEach(function(s){if(PL[dk]&&PL[dk][s]){var rid=PL[dk][s];ridCounts.set(rid,(ridCounts.get(rid)||0)+1);}});});if(!ridCounts.size){alert('Aucune recette planifiée.');return;}ridCounts.forEach(function(count,rid){var base=CP[rid]||(getR(rid)?getR(rid).portions||4:4);addToS(rid,base*count);});sw('shopping');}
 
 // ── SHOPPING
 function addToS(rid,portions){var r=getR(rid);if(!r)return;var ratio=portions/(r.portions||1);(r.ingredients||[]).forEach(function(ing){if(!ing.a)return;var qty=Math.round(ing.a*ratio*10)/10;var ex=SH.find(function(s){return s.name.toLowerCase()===ing.n.toLowerCase()&&s.unit===ing.u;});if(ex)ex.qty=Math.round((ex.qty+qty)*10)/10;else SH.push({id:Date.now()+'_'+Math.random(),name:ing.n,qty:qty,unit:ing.u||'',checked:false,source:r.name,cat:gIC(ing.n)});});scheduleSync();if(curTab==='shopping')rShop();}
