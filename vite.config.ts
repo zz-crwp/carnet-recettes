@@ -3,7 +3,7 @@ import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig({
   // Base relative : fonctionne sur user.github.io/repo/ comme sur un domaine racine
-  base: './',
+  base: '/carnet-recettes/',
   build: { target: 'es2020' },
   plugins: [
     VitePWA({
@@ -14,8 +14,8 @@ export default defineConfig({
         short_name: 'Carnet',
         description: 'Carnet de recettes personnel — pains artisanaux & cuisine du monde',
         lang: 'fr',
-        start_url: './',
-        scope: './',
+        start_url: '/carnet-recettes/',
+        scope: '/carnet-recettes/',
         display: 'standalone',
         orientation: 'portrait',
         background_color: '#F2F2F7',
