@@ -2,13 +2,13 @@ import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig({
-  // Base relative : fonctionne sur user.github.io/repo/ comme sur un domaine racine
+  // Servi sur https://<user>.github.io/carnet-recettes/ — la base doit correspondre au nom du dépôt
   base: '/carnet-recettes/',
   build: { target: 'es2020' },
   plugins: [
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['icons/*.png', 'favicon.svg'],
+      includeAssets: ['icons/*.png', 'favicon.png'],
       manifest: {
         name: 'Mon Carnet de Recettes',
         short_name: 'Carnet',
