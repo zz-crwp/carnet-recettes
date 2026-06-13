@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+  <title>Mon Carnet de Recettes</title>
+  <meta name="description" content="Carnet de recettes personnel — pains artisanaux & cuisine du monde" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Carnet" />
+  <meta name="theme-color" content="#F2F2F7" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+</head>
+<body>
+  <div id="app">
+    <main id="view" aria-live="polite"></main>
+    <div id="timer-pill" hidden></div>
+    <nav id="tabbar" aria-label="Navigation principale"></nav>
+  </div>
+  <div id="sheet-root"></div>
+  <div id="toast-root" aria-live="assertive"></div>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>
