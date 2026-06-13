@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="32%" r="80%">
+      <stop offset="0%" stop-color="#10301d"/>
+      <stop offset="55%" stop-color="#0b1410"/>
+      <stop offset="100%" stop-color="#0a0a0b"/>
+    </radialGradient>
+    <linearGradient id="ut" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#6BFFA8"/>
+      <stop offset="100%" stop-color="#22E06B"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="15" fill="url(#bg)"/>
+  <g fill="url(#ut)">
+    <!-- Fourchette -->
+    <rect x="20.5" y="13" width="2.6" height="11" rx="1.3"/>
+    <rect x="24.6" y="13" width="2.6" height="11" rx="1.3"/>
+    <rect x="28.7" y="13" width="2.6" height="11" rx="1.3"/>
+    <path d="M20 23.5h11.8c0 3.2-2 5.3-4.4 5.8L26.9 50a2.1 2.1 0 0 1-4.2 0l-.5-20.7c-2.4-.5-4.4-2.6-4.4-5.8z" transform="translate(0.2 0)"/>
+    <!-- Couteau -->
+    <path d="M42 13c3.4 1.2 5.4 5.2 5.4 10.5 0 4.4-1.6 7.2-3.7 8.1L43.3 50a2.1 2.1 0 0 1-4.2 0l-.1-32.2C39 14.9 40.3 13 42 13z"/>
+  </g>
+</svg>

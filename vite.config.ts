@@ -8,7 +8,7 @@ export default defineConfig({
   plugins: [
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['icons/*.png', 'favicon.png'],
+      includeAssets: ['icons/*.png', 'favicon.svg', 'favicon.png'],
       manifest: {
         name: 'Mon Carnet de Recettes',
         short_name: 'Carnet',
@@ -18,8 +18,8 @@ export default defineConfig({
         scope: '/carnet-recettes/',
         display: 'standalone',
         orientation: 'portrait',
-        background_color: '#F2F2F7',
-        theme_color: '#16A34A',
+        background_color: '#0A0A0B',
+        theme_color: '#0A0A0B',
         icons: [
           { src: 'icons/icon-192.png', sizes: '192x192', type: 'image/png' },
           { src: 'icons/icon-512.png', sizes: '512x512', type: 'image/png' },

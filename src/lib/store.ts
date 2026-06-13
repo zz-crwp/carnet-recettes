@@ -36,7 +36,7 @@ export const settings = {
   set token(v: string) { localStorage.setItem('gh_token', v); },
   get gistId() { return localStorage.getItem('gh_gist') || ''; },
   set gistId(v: string) { localStorage.setItem('gh_gist', v); },
-  get theme() { return localStorage.getItem('theme') || 'auto'; },
+  get theme() { return localStorage.getItem('theme') || 'dark'; },
   set theme(v: string) { localStorage.setItem('theme', v); applyTheme(); },
 };
 
@@ -45,7 +45,7 @@ export function applyTheme() {
   const dark = pref === 'dark' || (pref === 'auto' && matchMedia('(prefers-color-scheme: dark)').matches);
   document.documentElement.dataset.theme = dark ? 'dark' : 'light';
   const tc = document.querySelector('meta[name="theme-color"]') as HTMLMetaElement;
-  if (tc) tc.content = dark ? '#000000' : '#F2F2F7';
+  if (tc) tc.content = dark ? '#0A0A0B' : '#F7F7F4';
 }
 matchMedia('(prefers-color-scheme: dark)').addEventListener('change', applyTheme);
 
